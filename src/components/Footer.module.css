@@ -1,0 +1,22 @@
+.ig,
+.wpp,
+.twtt,
+.loc {
+  color: white;
+}
+
+.ig:hover {
+  color: palevioletred;
+}
+
+.wpp:hover{
+    color: green;
+}
+
+.twtt:hover{
+    color: blue;
+}
+
+.loc:hover{
+    color: red;
+}
