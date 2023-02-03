@@ -10,7 +10,7 @@ import styles from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%" }} style={{marginTop: "auto"}}>
       <BottomNavigation style={{ backgroundColor: "#f44336" }}>
         <BottomNavigationAction
           icon={<InstagramIcon />}

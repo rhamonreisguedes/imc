@@ -8,7 +8,7 @@ type Props = {}
 
 const Home = (props: Props) => {
   return (
-    <Grid style={{textAlign: 'center', height: '100%'}} >
+    <Grid style={{textAlign: 'center', minHeight: "100vh"}} >
       <Typography variant="h3" gutterBottom>Corpo Feliz</Typography>
         <Grid container>
           <Grid item xs={12} md={6}>
