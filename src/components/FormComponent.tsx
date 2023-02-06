@@ -7,11 +7,27 @@ import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import ModalComponent from "./ModalComponent";
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function InputAdornments() {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
+  const [ibc, setIbc] = useState(0);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleHeight = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHeight(e.target.value);
@@ -24,10 +40,12 @@ export default function InputAdornments() {
   };
 
   const calculate = () => {
-    const num_height: number = parseFloat(height.replace(',', '.'));
+    const num_height: number = parseFloat(height.replace(",", "."));
     const num_weight: number = parseFloat(weight);
-    const ibc: number = num_weight / (num_height * num_height);
+    const ibc: number = (num_weight / (num_height * num_height));
     console.log(`Seu IMC é ${ibc.toFixed(2)}`);
+    setIbc(ibc);
+    handleOpen();
   };
 
   return (
@@ -86,6 +104,24 @@ export default function InputAdornments() {
           Calcular
         </Button>
       </div>
+      <div>
+      {/* <Button onClick={handleOpen}>Open modal</Button> */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Seu IMC é: 
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            {ibc.toFixed(2)}
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
     </Box>
   );
 }

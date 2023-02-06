@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid'
 import React from 'react'
 import FormComponent from '../components/FormComponent'
 import IBCTable from '../components/IBCTable'
-import ModalComponent from '../components/ModalComponent'
 
 type Props = {}
 
@@ -19,7 +18,6 @@ const Home = (props: Props) => {
             <IBCTable />
           </Grid>
         </Grid>
-        <ModalComponent />
     </Grid>
   )
 }
