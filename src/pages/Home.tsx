@@ -3,12 +3,13 @@ import Grid from '@mui/material/Grid'
 import React from 'react'
 import FormComponent from '../components/FormComponent'
 import IBCTable from '../components/IBCTable'
+import ModalComponent from '../components/ModalComponent'
 
 type Props = {}
 
 const Home = (props: Props) => {
   return (
-    <Grid style={{textAlign: 'center', minHeight: "100vh"}} >
+    <Grid style={{textAlign: 'center', minHeight: "82vh"}} >
       <Typography variant="h3" gutterBottom>Corpo Feliz</Typography>
         <Grid container>
           <Grid item xs={12} md={6}>
@@ -18,6 +19,7 @@ const Home = (props: Props) => {
             <IBCTable />
           </Grid>
         </Grid>
+        <ModalComponent />
     </Grid>
   )
 }
