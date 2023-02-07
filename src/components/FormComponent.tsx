@@ -41,7 +41,7 @@ export default function InputAdornments() {
   };
 
   const calculate = () => {
-    if (height === '' || weight === '') {
+    if (height === "" || weight === "") {
       setEmpty(true);
     } else {
       const num_height: number = parseFloat(height.replace(",", "."));
@@ -49,7 +49,7 @@ export default function InputAdornments() {
       const ibc: number = num_weight / (num_height * num_height);
       console.log(`Seu IMC é ${ibc.toFixed(2)}`);
       setIbc(ibc);
-      if(empty === true){
+      if (empty === true) {
         setEmpty(false);
       }
       handleOpen();
@@ -113,10 +113,15 @@ export default function InputAdornments() {
             Calcular
           </Button>
         </Typography>
-        {empty ? <Typography style={{color: 'red', fontSize: 'bold'}}>Altura ou Peso estão incompletos.</Typography> : ''}
+        {empty ? (
+          <Typography style={{ color: "red", fontSize: "bold" }}>
+            Altura ou Peso estão incompletos.
+          </Typography>
+        ) : (
+          ""
+        )}
       </div>
       <div>
-        
         <Modal
           open={open}
           onClose={handleClose}

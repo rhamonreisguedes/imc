@@ -2,50 +2,55 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
-import { Grid } from "@mui/material";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
 
-export default function ButtonAppBar() {
+const pages = ["Home", "Quem Somos", "Blog"];
+const settings = ["Perfil", "Sua Conta", "Consultas", "Sair"];
+
+function ResponsiveAppBar() {
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
-    <Box>
-      <AppBar position="static">
-        <Toolbar>
-          <Grid container>
-            <Grid item>
-              <Typography>Corpo Feliz</Typography>
-            </Grid>
-            <Grid item style={{ display: "flex", right:'0px' }}>
-              <Link
-                to="/"
-                style={{
-                  marginRight: "10px",
-                  textDecoration: "none",
-                  color: "white",
-                }}
-              >
-                <Typography>Home</Typography>
-              </Link>
-              <Link
-                to="/"
-                style={{
-                  marginRight: "10px",
-                  textDecoration: "none",
-                  color: "white",
-                }}
-              >
-                <Typography>Sobre Nós</Typography>
-              </Link>
-              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                <Typography>Contato</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar position="static" style={{ backgroundColor: "#FF9999" }}>
+      <Box
+        style={{
+          minHeight: "50px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography>Calculadora de IMC</Typography>
+      </Box>
+    </AppBar>
   );
 }
+export default ResponsiveAppBar;
