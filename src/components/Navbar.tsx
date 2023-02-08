@@ -48,7 +48,7 @@ function ResponsiveAppBar() {
           justifyContent: "center",
         }}
       >
-        <Typography>Calculadora de IMC</Typography>
+        <Typography variant="h5" p={1}>Calculadora de IMC</Typography>
       </Box>
     </AppBar>
   );

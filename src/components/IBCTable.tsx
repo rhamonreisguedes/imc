@@ -26,14 +26,14 @@ const IBCTable = ( props: Props) => {
       <Grid item xs={10} md={5}>
         <CardComponent
           color={"#ede15b"}
-          title={"Entre 18,5 e 24,9"}
+          title={"Entre 18,5 e 25"}
           text={"Normal"}
         ></CardComponent>
       </Grid>
       <Grid item xs={10} md={5}>
         <CardComponent
           color={"#f46a9b"}
-          title={"Entre 25 e 29,9"}
+          title={"Entre 25 e 30"}
           text={"Sobrepeso"}
         ></CardComponent>
       </Grid>

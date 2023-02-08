@@ -6,20 +6,8 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "@mui/material/Modal";
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 
 export default function InputAdornments() {
   const [height, setHeight] = useState("");
@@ -27,6 +15,8 @@ export default function InputAdornments() {
   const [ibc, setIbc] = useState(0);
   const [empty, setEmpty] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const [color, setColor] = useState("");
+  const [status, setStatus] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -43,6 +33,8 @@ export default function InputAdornments() {
   const calculate = () => {
     if (height === "" || weight === "") {
       setEmpty(true);
+    } else if (height === "0" || weight === "0") {
+      setEmpty(true);
     } else {
       const num_height: number = parseFloat(height.replace(",", "."));
       const num_weight: number = parseFloat(weight);
@@ -50,7 +42,6 @@ export default function InputAdornments() {
         setEmpty(true);
       } else {
         const ibc: number = num_weight / (num_height * num_height);
-        console.log(`Seu IMC é ${ibc.toFixed(2)}`);
         setIbc(ibc);
         if (empty === true) {
           setEmpty(false);
@@ -58,6 +49,36 @@ export default function InputAdornments() {
         handleOpen();
       }
     }
+  };
+
+  useEffect(() => {
+    if (ibc < 18.5) {
+      setColor("#ef9b20");
+      setStatus("Magreza");
+    } else if (ibc >= 18.5 && ibc < 25) {
+      setColor("#ede15b");
+      setStatus("Normal");
+    } else if (ibc >= 25 && ibc < 30) {
+      setColor("#f46a9b");
+      setStatus("Sobrepeso");
+    } else {
+      setColor("#ea5545");
+      setStatus("Obesidade");
+    }
+  }, [ibc]);
+
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+    backgroundColor: `${color}`,
+    textAlign: "center",
   };
 
   return (
@@ -70,7 +91,7 @@ export default function InputAdornments() {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Calcule seu IMC:
+          Descubra seu IMC:
         </Typography>
         <Typography gutterBottom>
           E tenha uma vida mais feliz, disposta e saudável!
@@ -112,9 +133,9 @@ export default function InputAdornments() {
         </FormControl>
         <Typography mb={3}>
           <Button
-            variant="outlined"
             style={{ width: "100px" }}
             onClick={calculate}
+            variant="contained"
           >
             Calcular
           </Button>
@@ -134,13 +155,14 @@ export default function InputAdornments() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
+          <Box sx={style} style={{}}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Seu IMC é:
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               {ibc.toFixed(2)}
             </Typography>
+            <Typography>Seu Status é: {status}</Typography>
           </Box>
         </Modal>
       </div>

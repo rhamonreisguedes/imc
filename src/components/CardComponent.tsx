@@ -22,6 +22,8 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  textAlign: "center",
+  backgroundColor: 'pink',
 };
 
 export default function CardComponent({ color, title, text }: ICard) {
@@ -38,7 +40,7 @@ export default function CardComponent({ color, title, text }: ICard) {
             Status: {text}
           </Typography>
           <Typography mb={1}>
-            <Button onClick={handleOpen}>Saiba Mais</Button>
+            <Button onClick={handleOpen} variant="contained">Saiba Mais</Button>
           </Typography>
         </CardContent>
       </Card>

@@ -12,10 +12,13 @@ const Home = (props: Props) => {
       style={{
         textAlign: "center",
         minHeight: "90vh",
+        maxWidth: "1200px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
+      pt={3}
+      pb={3}
     >
       <Grid
         container
