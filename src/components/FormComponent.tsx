@@ -46,18 +46,22 @@ export default function InputAdornments() {
     } else {
       const num_height: number = parseFloat(height.replace(",", "."));
       const num_weight: number = parseFloat(weight);
-      const ibc: number = num_weight / (num_height * num_height);
-      console.log(`Seu IMC é ${ibc.toFixed(2)}`);
-      setIbc(ibc);
-      if (empty === true) {
-        setEmpty(false);
+      if (Number.isNaN(num_height) || Number.isNaN(num_weight)) {
+        setEmpty(true);
+      } else {
+        const ibc: number = num_weight / (num_height * num_height);
+        console.log(`Seu IMC é ${ibc.toFixed(2)}`);
+        setIbc(ibc);
+        if (empty === true) {
+          setEmpty(false);
+        }
+        handleOpen();
       }
-      handleOpen();
     }
   };
 
   return (
-    <Box>
+    <Box mt={3}>
       <div
         style={{
           display: "flex",
@@ -78,6 +82,7 @@ export default function InputAdornments() {
         >
           <OutlinedInput
             id="outlined-adornment-weight"
+            placeholder="Ex: 1,63"
             endAdornment={<InputAdornment position="end">m</InputAdornment>}
             aria-describedby="outlined-weight-helper-text"
             inputProps={{
@@ -96,6 +101,7 @@ export default function InputAdornments() {
         >
           <OutlinedInput
             id="outlined-adornment-weight"
+            placeholder="Ex: 65"
             endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             aria-describedby="outlined-weight-helper-text"
             inputProps={{
@@ -115,7 +121,7 @@ export default function InputAdornments() {
         </Typography>
         {empty ? (
           <Typography style={{ color: "red", fontSize: "bold" }}>
-            Altura ou Peso estão incompletos.
+            Altura ou Peso possuem valores nulos e/ou inválidos.
           </Typography>
         ) : (
           ""
